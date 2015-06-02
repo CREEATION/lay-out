@@ -24,7 +24,7 @@ var output    = require('./output.js');
 var structure = [];
 
 module.exports = {
-  layOut: function (file_input, file_output) {
+  create: function (file_input, file_output) {
     fs.readFile(file_input, {
       encoding: 'UTF-8'
     }, function (err, data) {

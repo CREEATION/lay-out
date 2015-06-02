@@ -1,4 +1,8 @@
 {
+  "name": "lay-out",
+  "version": "1.0.0",
+  "description": "project structure visualizer",
+  "author": "Thomas Creeten <thomas@creeation.de> (http://github.com/CREEATION)",
   "devDependencies": {
     "mkdirp": "^0.5.1"
   }
