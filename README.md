@@ -10,7 +10,7 @@ Basic:
 ```javascript
 var layOut = require('lay-out');
 
-layOut.create('example.lay-out');
+layOut('example.lay-out');
 ```
 
 Custom filename:
@@ -18,7 +18,7 @@ Custom filename:
 ```javascript
 var layOut = require('lay-out');
 
-layOut.create('example.lay-out', 'TEST.md');
+layOut('example.lay-out', 'TEST.md');
 ```
 
 ## Example output
