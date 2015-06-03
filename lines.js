@@ -11,12 +11,12 @@ var settings = require('./settings.js');
 exports.getLineLevel = function (line) {
   switch (_this.getLineType(line)) {
     case 'folder':
-      line.level = line.initial.match(/^([\s|\t]+)[^-\s\t]/)[1];
+      line.level = line.initial.match(/^([\s]*?)[^-\s]/)[1];
       return line.level.replace(/\t/g, '  ').length / settings.get('indentation_level');
       break;
 
     case 'file':
-      line.level = line.initial.match(/^([\s|\t]+)-/)[1];
+      line.level = line.initial.match(/^([\s]+)-/)[1];
       return line.level.replace(/\t/g, '  ').length / settings.get('indentation_level');
       break;
 
@@ -41,16 +41,12 @@ exports.getLineComment = function (line) {
   var regex;
 
   switch (_this.getLineType(line)) {
-    case 'slash':
-      regex = /^\/\s?\?\s?(.+)/;
-      break;
-
     case 'folder':
-      regex = /^[\s|\t]+[^-\s\t]+[\s|\t]?\?[\s|\t](.+)/;
+      regex = /^[\s]+[^-\s]+[\s]?\?[\s](.+)/;
       break;
 
     case 'file':
-      regex = /^[\s|\t]+-[\s|\t][^?\s\t]+[\s|\t]*?\?[\s|\t]?(.+)/;
+      regex = /^[\s]+-[\s][^?\s]+[\s]*?\?[\s]?(.+)/;
       break;
   }
 
@@ -63,17 +59,13 @@ exports.getLineComment = function (line) {
 
 exports.getLineString = function (line) {
   switch (_this.getLineType(line)) {
-    case 'slash':
-      return line.initial.match(/^(\/)\s?\??\s?/)[1];
-      break;
-
     case 'folder':
-      line = line.initial.match(/^[\s|\t]+([^-\s\t]+)/)[1];
+      line = line.initial.match(/^[\s]*?([\/]?[^\s-][^?\s]*)/)[1];
       return line.replace(/\//g, '') + '/';
       break;
 
     case 'file':
-      return line.initial.match(/^[\s|\t]+-[\s|\t]?([^?\s\t]+)/)[1];
+      return line.initial.match(/\-\s([^?\s]+)/)[1];
       break;
   }
 };
@@ -97,16 +89,12 @@ exports.setLineObj = function (el, i) {
 };
 
 exports.getLineType = function (line) {
-  // very first line (must be a slash, optionally with a comment)
-  if (line.initial.match(/^\//)) {
-    return 'slash';
-
   // element is a folder
-  } else if (line.initial.match(/^[\s|\t]+([^-\s\t]+)/)) {
+  if (line.initial.match(/^[\s]*?([^?\s|-]+)/)) {
     return 'folder';
 
   // element is a file
-  } else if (line.initial.match(/^[\s|\t]+-/)) {
+  } else if (line.initial.match(/^[\s]+-/)) {
     return 'file';
   }
 };
