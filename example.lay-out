@@ -14,11 +14,13 @@
           /main
             - logo.png ?lol
             - footer.bmp? bmp is so cool
-            - header.png
+            /surprisefolder
+              - header.png
+              - header2.swf
             - button.gif
         - sprite.png
         - _auto-generated_sprites.sass
-    typography/?those fonts look awesome
+    typography/ ? those fonts look awesome
       - styles.sass
   javascript/
     /app ? app specific js
