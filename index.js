@@ -67,15 +67,23 @@ module.exports = function (file_input, file_output) {
     data.forEach(function (element, index) {
       var line = lines.getLineObj(element, index);
 
+      if (line.multiline_comment) {
+        line.comment = output.multilineComment({
+          line: line,
+          data: data,
+          index: index
+        });
+      }
+
       // skip empty line objects
-      if (line.initial !== '') {
+      if (line.initial !== '' && line.string !== undefined) {
         structure.push(line);
       }
     });
 
     structure.forEach(function (sline1, index1) {
       structure.forEach(function (sline2, index2) {
-        if (sline1.level === sline2.level) {
+        if (sline1.level === sline2.level && sline2.string && sline1.string) {
           if (sline2.string.length > sline1.string.length) {
             settings._push('line_maxlength', sline2.string.length + sline2.indentation);
           }

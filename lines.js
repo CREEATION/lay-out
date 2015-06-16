@@ -2,6 +2,10 @@ var _this = this;
 
 var settings = require('./settings.js');
 
+var lineLevelIndentation = function (level) {
+  return level.replace(/\t/g, '  ').length / settings.get('indentation_level');
+};
+
 /**
  * determine the indentation level of a given line (object).
  *
@@ -11,13 +15,13 @@ var settings = require('./settings.js');
 exports.getLineLevel = function (line) {
   switch (_this.getLineType(line)) {
     case 'folder':
-      line.level = line.initial.match(/^([\s]*?)[^-\s]/)[1];
-      return line.level.replace(/\t/g, '  ').length / settings.get('indentation_level');
+      line.level = line.initial.match(/^(\s*?)[^-\s\?]/)[1];
+      return lineLevelIndentation(line.level);
       break;
 
     case 'file':
-      line.level = line.initial.match(/^([\s]+)-/)[1];
-      return line.level.replace(/\t/g, '  ').length / settings.get('indentation_level');
+      line.level = line.initial.match(/^(\s+)-/)[1];
+      return lineLevelIndentation(line.level);
       break;
 
     default:
@@ -42,12 +46,16 @@ exports.getLineComment = function (line) {
 
   switch (_this.getLineType(line)) {
     case 'folder':
-      regex = /^[\s]+[^-\s]+[\s]?\?[\s](.+)/;
+      regex = /^\s*?[^-\s]+\s?\?\s(.+)/;
       break;
 
     case 'file':
-      regex = /^[\s]+-[\s][^?\s]+[\s]*?\?[\s]?(.+)/;
+      regex = /^\s+-\s[^?\s]+\s*?\?\s?(?=[^:])(.+)/;
       break;
+  }
+
+  if (line.initial.match(/\s?(\?)\:$/)) {
+    line.multiline_comment = true;
   }
 
   if (line.initial.match(regex) && line.initial.match(regex)[1]) {
@@ -60,7 +68,7 @@ exports.getLineComment = function (line) {
 exports.getLineString = function (line) {
   switch (_this.getLineType(line)) {
     case 'folder':
-      line = line.initial.match(/^[\s]*?([\/]?[^\s-][^?\s]*)/)[1];
+      line = line.initial.match(/^\s*?(\/?[^?\s-][^?\s]*)/)[1];
       return line.replace(/\//g, '') + '/';
       break;
 
@@ -90,11 +98,11 @@ exports.setLineObj = function (el, i) {
 
 exports.getLineType = function (line) {
   // element is a folder
-  if (line.initial.match(/^[\s]*?([^?\s|-]+)/)) {
+  if (line.initial.match(/^\s*?([^?\s|-]+)/)) {
     return 'folder';
 
   // element is a file
-  } else if (line.initial.match(/^[\s]+-/)) {
+  } else if (line.initial.match(/^\s+-/)) {
     return 'file';
   }
 };

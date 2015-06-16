@@ -1,28 +1,49 @@
-/
+/nothing ? alrighty
   - README.md   ? What is this all about?
   - .htaccess   ? .htaccess stuff
   - app.sass    ? main sass file
   - fonts.sass
-  /base ? all the base stuff
-    icons/
-      - README
-      - styles.sass   ? cool icon styles
+  /base ?:
+    ? all the base stuff:
+    ? lorem-ipsum? dolor... sit amet boa, lorem
+    ? ipsum dolor amet sit lorem lorem.
+    ? dolor? dolor! sit sit lorem amet, ok.
+    icons/ ?:
+      ? ok lol.
+      - README ?:
+        ? aoohoho oh hh khkh ok hokhkohko hko hko
+        ? oaskdosakd oasdk aos dakodas kodko.
+      - styles.sass ?:
+        ? nothing but the styles:
+        ? dolor? dolor! sit sit lorem amet, ok.
+        ? ipsum dolor amet sit lorem lorem.
+        ? lorem-ipsum? dolor... sit amet boa, lorem
       - template.jade ? use those icons
     /sprites
-      /img/
+      /img/ ?:
+        ? asdasdasd dsa!
+        ? asdsa fsadas dxxxasd
+        ? 1f fsdf sf d 2
+        ?  fsd fsd fsdf sdf !!.
         /sprites ? nice sprites
           /main
             - logo.png ?lol
             - footer.bmp? bmp is so cool
             /surprisefolder
               - header.png
-              - header2.swf
+              - header2.swf ?:
+                ? flash? really?
+                ? ipsum dolor amet sit lorem lorem.
+                ? dolor? dolor! sit sit lorem amet, ok.
             - button.gif
         - sprite.png
         - _auto-generated_sprites.sass
     typography/ ? those fonts look awesome
       - styles.sass
-  javascript/
+  javascript/ ?:
+    ? dolor? dolor! sit sit lorem amet, ok.
+    ? lorem-ipsum? dolor... sit amet boa, lorem
+    ? ipsum dolor amet sit lorem lorem.
     /app ? app specific js
       portfolio/
         - 01_plugins.js
