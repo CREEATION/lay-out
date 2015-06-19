@@ -3,7 +3,27 @@
   "version": "1.0.0",
   "description": "project structure visualizer",
   "author": "Thomas Creeten <thomas@creeation.de> (http://github.com/CREEATION)",
-  "devDependencies": {
+  "repository": "git://github.com/CREEATION/lay-out.git",
+  "bugs": "https://github.com/CREEATION/lay-out/issues",
+  "license": {
+    "type": "MIT",
+    "url": "http://github.com/CREEATION/lay-out/raw/master/LICENSE"
+  },
+  "main": "index.js",
+  "dependencies": {
     "mkdirp": "^0.5.1"
+  },
+  "keywords": [
+    "project",
+    "structure",
+    "visualizer",
+    "visualize",
+    "markdown",
+    "md",
+    "lay-out",
+    "lf"
+  ],
+  "engines": {
+    "node": ">=0.10.0"
   }
 }
