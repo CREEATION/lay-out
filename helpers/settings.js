@@ -1,9 +1,10 @@
 var _this = this;
 
 exports._settings = {
+  output: 'LAY-OUT.md',
   indentation_level:  2,
   indentation_type:   'tabs',
-  line_maxlength:     []
+  _line_maxlength:     []
 };
 
 exports._merge = function () {

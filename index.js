@@ -3,10 +3,10 @@
  */
 var fs        = require('fs');
 
-var settings  = require('./settings.js');
-var files     = require('./files.js');
-var lines     = require('./lines.js');
-var output    = require('./output.js');
+var settings  = require('./helpers/settings.js');
+var files     = require('./helpers/files.js');
+var lines     = require('./helpers/lines.js');
+var output    = require('./helpers/output.js');
 
 /**
  * an array representing the file contents with information about
@@ -23,8 +23,16 @@ var output    = require('./output.js');
  */
 var structure = [];
 
-module.exports = function (file_input, file_output) {
-  fs.readFile(file_input, {
+module.exports = function (opt) {
+  opt = opt || {};
+
+  if (!opt.input) {
+    opt = settings._merge(settings._settings, { input: opt });
+  } else {
+    opt = settings._merge(settings._settings, opt);
+  }
+
+  fs.readFile(opt.input, {
     encoding: 'UTF-8'
   }, function (err, data) {
     if (err) throw err;
@@ -85,15 +93,15 @@ module.exports = function (file_input, file_output) {
       structure.forEach(function (sline2, index2) {
         if (sline1.level === sline2.level && sline2.string && sline1.string) {
           if (sline2.string.length > sline1.string.length) {
-            settings._push('line_maxlength', sline2.string.length + sline2.indentation);
+            settings._push('_line_maxlength', sline2.string.length + sline2.indentation);
           }
         }
       });
     });
 
-    if (settings.get('line_maxlength').length > 0) {
+    if (settings.get('_line_maxlength').length > 0) {
       settings.set({
-        line_maxlength: settings.get('line_maxlength').reduce(function (x, y) {
+        _line_maxlength: settings.get('_line_maxlength').reduce(function (x, y) {
           return (x > y) ? x : y;
         })
       });
@@ -101,7 +109,7 @@ module.exports = function (file_input, file_output) {
 
     var file_structure = output.get(structure);
 
-    var output_path = files.getOutputPath(file_output);
+    var output_path = files.getOutputPath(opt.output);
 
     if (output_path.match(/^[\/][^\/]+\//)) {
       files.writeFullPath(output_path, file_structure);
@@ -111,7 +119,7 @@ module.exports = function (file_input, file_output) {
 
     // reset those, as they are global (ugly)
     settings.set({
-      line_maxlength: []
+      _line_maxlength: []
     });
 
     structure = [];

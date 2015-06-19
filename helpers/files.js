@@ -38,5 +38,5 @@ exports.getOutputPath = function(path) {
     path = '/' + path;
   }
 
-  return (path === undefined) ? '/LAY-OUT.md' : path;
+  return path;
 };

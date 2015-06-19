@@ -108,7 +108,7 @@ exports.get = function (array) {
      * output comment if available
      */
     if (line.comment) {
-      var max_length = settings.get('line_maxlength') - line.string.length - line.indentation + linechar_count;
+      var max_length = settings.get('_line_maxlength') - line.string.length - line.indentation + linechar_count;
       var added = 0;
 
       output += ' ';
@@ -167,8 +167,6 @@ exports.get = function (array) {
   });
 
   output += '```';
-
-  console.log(output);
 
   return output;
 };
