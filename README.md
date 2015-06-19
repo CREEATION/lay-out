@@ -18,7 +18,10 @@ Custom filename:
 ```javascript
 var layOut = require('lay-out');
 
-layOut('example.lf', 'TEST.md');
+layOut({
+  input: 'example.lf',
+  output: 'TEST.md'
+});
 ```
 
 ## Example output
