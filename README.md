@@ -1,7 +1,10 @@
 # lay-out
-project structure visualizer
+project structure visualizer.
 
 > Example files included in this repo.
+
+## Sublime Text 2 Syntax Highlighting
+https://github.com/CREEATION/lay-out-syntax
 
 ## Usage
 
