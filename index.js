@@ -48,7 +48,7 @@ module.exports = function (opt) {
     /**
      * determine the indentation type (tabs or spaces) and the amount
      * of whitespace, e.g. 2 spaces, 4 spaces, etc.
-     * write those informations into the settings object for later use.
+     * write these informations into the settings object for later use.
      */
     data.forEach(function (element, index) {
       if (!element || index > 1) return;
@@ -117,7 +117,7 @@ module.exports = function (opt) {
       files.writeFile(output_path, file_structure);
     }
 
-    // reset those, as they are global (ugly)
+    // reset these, as they are global (ugly)
     settings.set({
       _line_maxlength: []
     });

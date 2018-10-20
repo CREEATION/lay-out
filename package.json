@@ -1,6 +1,6 @@
 {
   "name": "lay-out",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "project structure visualizer",
   "author": "Thomas Creeten <thomas@creeation.de> (http://github.com/CREEATION)",
   "repository": "git://github.com/CREEATION/lay-out.git",
@@ -14,6 +14,7 @@
     "mkdirp": "^0.5.1"
   },
   "keywords": [
+    "static",
     "project",
     "structure",
     "visualizer",
